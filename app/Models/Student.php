@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-   public function profile(){
-      return $this->hasOne(Profile::class);
-   }
+   // public function profile(){
+   //    return $this->hasOne(Profile::class);
+   // }
     public function comments(){
        return $this->hasMany(Comment::class);
     }
@@ -21,6 +21,12 @@ class Student extends Model
      }
      public function profileDetail(){
         return $this->hasOneThrough(ProfileDetails::class,Profile::class,'student_id','profile_id','id','id');
+     }
+     public function likes(){
+        return $this->hasManyThrough(Like::class,Comment::class,'student_id','comment_id','id','id');
+     }
+     public function profile(){
+        return $this->morphOne(Profile::class,'profileable');
      }
 
 }

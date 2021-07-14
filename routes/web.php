@@ -2,8 +2,8 @@
 
 use App\Models\Student;
 use App\Models\Subject;
-use App\Model\Profile;
-
+use App\Models\Profile;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,8 +52,34 @@ Route::get('/manytomany', function () {
 });
 Route::get('/hasOnethrough', function () {
    $st =Student::find(2);
-//    return $st->profile;
+   return $st->profile;
    return $st->profileDetail;
+});
+Route::get('/hasManyThrough', function () {
+   $st =Student::find(1);
+   return Student::has('likes')->with('comments')->with('likes')->get();
+   return $st->likes;
+});(
+Route::get('/oneToOnePolymorphic', function () {
+   $st =Student::find(1);
+   
+//    $st->profile()->create([
+//      'email'=>'ahsan@gmail.com',
+//      'phone'=>'017963321',
+//    ]);
+// return Student::doesntHave('profile')->get();
+return Profile::whereHasMorphic(
+   'profileable',Student::class,
+   function($q){
+      $q->where('email','like','%1@gmail.com');
+   }
+)->get();
+// $tc=Teacher::find(1);
+//  $tc->profile()->create([
+//         'email'=>'teacher1@gmail.com',
+//         'phone'=>'017963321',
+//       ]);;
+// return Profile::all();
 });
 
 Auth::routes();

@@ -26,7 +26,7 @@ class CreateSubjectsTable extends Migration
             $table->timestamps();
             $table->foreign('student_id')->references('id')->on('students')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('subject_d')->references('id')->on('subjects')
+            $table->foreign('subject_id')->references('id')->on('subjects')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

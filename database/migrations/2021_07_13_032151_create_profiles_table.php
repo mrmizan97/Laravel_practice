@@ -17,10 +17,11 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->string('email');
             $table->string('phone');
-            $table->foreignId('student_id')->nullable();
+            $table->integer('profileable_id')->nullable();
+            $table->string('profileable_type')->nullable();
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            // $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
 
         });
     }
