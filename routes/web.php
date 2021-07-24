@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return redirect()->to('/login');
-// });
+Route::get('/', function () {
+    return redirect()->to('/login');
+});
 Route::get('/manytomany', function () {
    // many to many relationship
     $st=Student::latest()->get();
@@ -59,7 +59,8 @@ Route::get('/hasManyThrough', function () {
    $st =Student::find(1);
    return Student::has('likes')->with('comments')->with('likes')->get();
    return $st->likes;
-});(
+});
+
 Route::get('/oneToOnePolymorphic', function () {
    $st =Student::find(1);
    
@@ -72,8 +73,8 @@ return Profile::whereHasMorphic(
    'profileable',Student::class,
    function($q){
       $q->where('email','like','%1@gmail.com');
-   }
-)->get();
+   
+})->get();
 // $tc=Teacher::find(1);
 //  $tc->profile()->create([
 //         'email'=>'teacher1@gmail.com',
