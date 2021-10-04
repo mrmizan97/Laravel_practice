@@ -18,4 +18,11 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+    public function test_about_return_something()
+    {
+        $response = $this->get('/about');
+// dd($response);
+        $response->assertSee("About");
+        
+    }
 }

@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { default: Echo } = require('laravel-echo');
+
 require('./bootstrap');
 require('./sb-admin');
 window.Vue = require('vue');
@@ -29,4 +31,10 @@ Vue.component('create-product', require('./components/CreateProduct.vue').defaul
 
 const app = new Vue({
     el: '#app',
+    created(){
+        Echo.channel('notification')
+        .listen('MessageNotifications',(e)=>{
+            alert("Welp, this showed up without refresh")
+        });
+    }
 });

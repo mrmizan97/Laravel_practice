@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageNotification;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Profile;
@@ -16,10 +17,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return redirect()->to('/login');
+// Broadcasting in laravel
+Route::get('/event', function () {
+   event(new MessageNotification('This is the first broadcast message'));
 });
+Route::get('/listen', function () {
+return view('listen');
+});
+Route::get('/', function () {
+    return "Welcome";
+});
+Route::get('/about', function () {
+    return "About Us";
+});
+// Route::get('/', function () {
+//     return redirect()->to('/login');
+// });
 Route::get('/manytomany', function () {
    // many to many relationship
     $st=Student::latest()->get();
@@ -84,7 +97,6 @@ return Profile::whereHasMorphic(
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
