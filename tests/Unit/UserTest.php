@@ -21,6 +21,6 @@ class UserTest extends TestCase
               'email'=>'user@gmail.com',
               'password'=>'1234'
         ]);
-        // $this->assertTrue(true);
+        $this->assertEquals('Mr. User',$user->full_name);
     }
 }

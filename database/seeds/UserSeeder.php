@@ -12,14 +12,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         \DB::table('users')->delete();
-        
+
         \DB::table('users')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'name' => 'M R Mizan',
                 'phone_number' => '01795221226',
-                'email' => 'admin@gmail.com',
+                'email' => 'mizan@gmail.com',
                 // 'account_type' => NULL,
                 // 'profile_picture_path' => NULL,
                 'email_verified_at' => NULL,
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'created_at' => '2021-06-03 14:47:31',
                 'updated_at' => '2021-06-03 15:43:09',
             ),
-            // 1 => 
+            // 1 =>
             // array (
             //     'id' => 6,
             //     'name' => 'Mohammad N Mahfuj',
