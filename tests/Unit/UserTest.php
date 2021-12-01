@@ -3,10 +3,15 @@
 namespace Tests\Unit;
 
 use App\Models\User;
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    // use DatabaseMigrations;
     /**
      * A basic unit test example.
      *@test
@@ -14,13 +19,13 @@ class UserTest extends TestCase
      */
     public function user_has_full_name_attribute()
     {
-        //crate user
         $user=User::create([
-            'name'=>'Mr.',
-             'lastname'=>'User',
+            'name'=>'M R Mizan3',
+             'phone_number'=>'01795221226',
               'email'=>'user@gmail.com',
               'password'=>'1234'
         ]);
-        $this->assertEquals('Mr. User',$user->full_name);
+        $user=new User();
+        $this->assertEquals('Mr. User', $user->fullname);
     }
 }

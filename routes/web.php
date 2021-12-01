@@ -5,6 +5,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Profile;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 // Broadcasting in laravel
 Route::get('/event', function () {
-   event(new MessageNotification('This is the first broadcast message'));
+    event(new MessageNotification('This is the first broadcast message'));
 });
 Route::get('/listen', function () {
-return view('listen');
+    return view('listen');
 });
 Route::get('/', function () {
     return "Welcome";
@@ -34,7 +35,7 @@ Route::get('/about', function () {
 //     return redirect()->to('/login');
 // });
 Route::get('/manytomany', function () {
-   // many to many relationship
+    // many to many relationship
     $st=Student::latest()->get();
     $sub=Subject::find(2);
     // return Student::has('subjects')->get();
@@ -64,31 +65,32 @@ Route::get('/manytomany', function () {
     return $sub;
 });
 Route::get('/hasOnethrough', function () {
-   $st =Student::find(2);
-   return $st->profile;
-   return $st->profileDetail;
+    $st =Student::find(2);
+    return $st->profile;
+    return $st->profileDetail;
 });
 Route::get('/hasManyThrough', function () {
-   $st =Student::find(1);
-   return Student::has('likes')->with('comments')->with('likes')->get();
-   return $st->likes;
+    $st =Student::find(1);
+    return Student::has('likes')->with('comments')->with('likes')->get();
+    return $st->likes;
 });
 
 Route::get('/oneToOnePolymorphic', function () {
-   $st =Student::find(1);
-   
+    $st =Student::find(1);
+
 //    $st->profile()->create([
 //      'email'=>'ahsan@gmail.com',
 //      'phone'=>'017963321',
 //    ]);
-// return Student::doesntHave('profile')->get();
-return Profile::whereHasMorphic(
-   'profileable',Student::class,
-   function($q){
-      $q->where('email','like','%1@gmail.com');
-   
-})->get();
-// $tc=Teacher::find(1);
+    // return Student::doesntHave('profile')->get();
+    return Profile::whereHasMorphic(
+        'profileable',
+        Student::class,
+        function ($q) {
+            $q->where('email', 'like', '%1@gmail.com');
+        }
+    )->get();
+    // $tc=Teacher::find(1);
 //  $tc->profile()->create([
 //         'email'=>'teacher1@gmail.com',
 //         'phone'=>'017963321',
@@ -104,4 +106,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('product', 'ProductController');
     Route::resource('blog', 'BlogController');
     Route::resource('blog-category', 'BlogCategoryController');
+});
+// http client
+Route::get('/get', function () {
+    $response= Http::get('https://base-api.swiftfederation.com/v1.2/customerChildren/1}');
+    $data=[
+        "userId"=> 1110,
+        "id"=> 100,
+        "title"=> "at dfdf df dnam consequatur ea labore ea harum",
+        "body"=> "cupididf dfdtate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
+    ];
+    // Http::asForm()->post('https://jsonplaceholder.typicode.com/posts', $data);
+    return $response->json();
 });
