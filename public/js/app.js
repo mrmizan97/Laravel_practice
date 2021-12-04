@@ -69235,7 +69235,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('create-product', __webpack_require__(/*! ./components/CreateProduct.vue */ "./resources/js/components/CreateProduct.vue")["default"]);
+Vue.component("create-product", __webpack_require__(/*! ./components/CreateProduct.vue */ "./resources/js/components/CreateProduct.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -69243,9 +69243,9 @@ Vue.component('create-product', __webpack_require__(/*! ./components/CreateProdu
  */
 
 var app = new Vue({
-  el: '#app',
+  el: "#app",
   created: function created() {
-    Echo.channel('notification').listen('MessageNotifications', function (e) {
+    Echo.channel("notice").listen("NotificationTest", function (e) {
       alert("Welp, this showed up without refresh");
     });
   }
@@ -69303,7 +69303,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "d770bb3ae927c9c7dc1e",
+  key: "db996c1739a5e1334913",
   cluster: "ap2",
   forceTLS: true,
   encryption: true
@@ -69466,8 +69466,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\xamp\htdocs\php-laravel\laravel_practice\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\xamp\htdocs\php-laravel\laravel_practice\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\xamp\htdocs\Laravel_practice\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xamp\htdocs\Laravel_practice\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -1,11 +1,15 @@
 <?php
 
 use App\Events\MessageNotification;
+use App\Events\NotificationTest;
+use App\Mail\AttachmentMail;
+use App\Mail\TestMail3;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Profile;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +22,31 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Broadcasting in laravel
-Route::get('/event', function () {
-    event(new MessageNotification('This is the first broadcast message'));
+//event & listener
+Route::get('/event', 'NewsLetterController@index');
+Route::post('/subscribe', 'NewsLetterController@subscribe')->name('subscribe');
+//sms
+Route::get('/sms', 'SMSController@sendSMS');
+//Notification
+Route::get('send-invoice', 'InvoicePaidController@sendNotification');
+//attachment email
+Route::get('/attachment-email', function () {
+    Mail::to('mrmizanbd93@gmail.com')->send(new AttachmentMail());
+    return new AttachmentMail();
 });
+//email
+Route::get('/email', function () {
+    Mail::to('mrmizanbd93@gmail.com')->send(new TestMail3());
+    return new TestMail3();
+});
+
+// Broadcasting in laravel
+Route::get('/event2', function () {
+    event(new NotificationTest('this is our test message'));
+});
+// Route::get('/event', function () {
+//     event(new MessageNotification('This is the first broadcast message'));
+// });
 Route::get('/listen', function () {
     return view('listen');
 });
@@ -119,3 +144,4 @@ Route::get('/get', function () {
     // Http::asForm()->post('https://jsonplaceholder.typicode.com/posts', $data);
     return $response->json();
 });
+Route::resource('burger', BurgerController::class);
