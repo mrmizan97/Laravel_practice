@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// queue & jobs
+Route::get('/mail', 'NewsLetterController@sendMail');
+
 //event & listener
 Route::get('/event', 'NewsLetterController@index');
 Route::post('/subscribe', 'NewsLetterController@subscribe')->name('subscribe');

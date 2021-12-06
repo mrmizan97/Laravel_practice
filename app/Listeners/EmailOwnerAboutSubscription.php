@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 class EmailOwnerAboutSubscription
 {
     /**
-     * Create the event listener.
+     * Create the event listener. 
      *
      * @return void
      */

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserSubscribe;
+use App\Mail\CustomerJobMail;
 use Illuminate\Http\Request;
 
 class NewsLetterController extends Controller
@@ -18,5 +19,11 @@ class NewsLetterController extends Controller
     ]);
         event(new UserSubscribe($request->input('email')));
         return back();
+    }
+
+    public function sendMail()
+    {
+        dispatch(new CustomerJobMail())->delay(now()->addMinutes(1));
+        dd("Email has been delivered");
     }
 }
