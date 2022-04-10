@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Models\User;
 class UserSeeder extends Seeder
 {
     /**
@@ -11,26 +11,31 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('users')->delete();
-
-        \DB::table('users')->insert(array (
-            0 =>
-            array (
-                'id' => 1,
-                'name' => 'M R Mizan',
-                'phone_number' => '01795221226',
-                'email' => 'mizan@gmail.com',
-                // 'account_type' => NULL,
-                // 'profile_picture_path' => NULL,
-                'email_verified_at' => NULL,
-                'password' => '$2y$12$YxGLw65aVf70BFSndIEdUuo3b4mQAD2JHG3ZMG08U8oNjCWMQWM9O',
-                // 'registration_source' => NULL,
-                // 'fcm_token' => NULL,
-                // 'pin' => NULL,
-                'remember_token' => 'cqSGiiFtAYR00H4H7MbPg8jo4XOLSaQtVAjWZS6TwfVF1GXn2XV52ZNJJYjb',
-                'created_at' => '2021-06-03 14:47:31',
-                'updated_at' => '2021-06-03 15:43:09',
-            ),
+        
+        // \DB::table('users')->delete();
+User::insert([
+    'name' => Str::random(10),
+    'email' => Str::random(10).'@gmail.com',
+    'password' => Hash::make('password'),
+]);
+        // \DB::table('users')->insert(array (
+            // 0 =>
+            // array (
+            //     'id' => 1,
+            //     'name' => 'M R Mizan',
+            //     'phone_number' => '01795221226',
+            //     'email' => 'mizan@gmail.com',
+            //     // 'account_type' => NULL,
+            //     // 'profile_picture_path' => NULL,
+            //     'email_verified_at' => NULL,
+            //     'password' => '$2y$12$YxGLw65aVf70BFSndIEdUuo3b4mQAD2JHG3ZMG08U8oNjCWMQWM9O',
+            //     // 'registration_source' => NULL,
+            //     // 'fcm_token' => NULL,
+            //     // 'pin' => NULL,
+            //     'remember_token' => 'cqSGiiFtAYR00H4H7MbPg8jo4XOLSaQtVAjWZS6TwfVF1GXn2XV52ZNJJYjb',
+            //     'created_at' => '2021-06-03 14:47:31',
+            //     'updated_at' => '2021-06-03 15:43:09',
+            // ),
             // 1 =>
             // array (
             //     'id' => 6,
@@ -48,6 +53,6 @@ class UserSeeder extends Seeder
             //     'created_at' => '2021-06-27 17:44:24',
             //     'updated_at' => '2021-06-27 17:44:24',
             // ),
-        ));
+        // ));
     }
 }
