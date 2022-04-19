@@ -1,5 +1,6 @@
 <?php
 
+use App\PaymentService\BkashService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (BkashService $bkashService) {
+    dump($bkashService->pay());
+    dump($bkashService->pay());
+    dd(app());
     return view('welcome');
 });
